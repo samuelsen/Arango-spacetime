@@ -43,6 +43,8 @@ Where « collectionName» is the collection name to insert to, and
 - The third is the to concept
 - And the last is a context note.
 
+NB! There should only be one input line per request to the service.
+
 ## GET `/h`
 `file: server.js`
 
