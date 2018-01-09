@@ -1,6 +1,8 @@
 # Arango-spacetime
 A service to handle input from the Cellibrium project and insert to Arango DB
 
+The Cellibrium project https://github.com/markburgess/Cellibrium
+
 # How to
 Clone / download this repo. Then run `npm install` to install all dependencies.
 
