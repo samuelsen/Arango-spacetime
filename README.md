@@ -91,5 +91,3 @@ Where the input are as follows:
 - `server.js` the server file for the service, the entry point for our application.
 
 # TODO / in progress
-- Add basic traversal queries for the transformation
-    - fix depth option
