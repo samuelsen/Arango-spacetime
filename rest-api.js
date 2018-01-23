@@ -1,6 +1,7 @@
 const arango = require('arangojs');
 const Database = arango.Database;
 const aql = arango.aql;
+const qb = require('aqb');
 
 // Using a complex connection string with authentication
 const host = 'localhost';//process.env.ARANGODB_HOST;
@@ -95,23 +96,18 @@ function makeGraph (graphName){
 
 function search (collectionName, graph, subject, context, type, depth){
   
+
   if(depth !== undefined){
-    depth = `0..${depth}`;
+    depth = "0.." + depth;
   }else{
     depth = '';
   }
 
-  subject = "%" + subject + "%";
-
-  const collection = db.collection(collectionName);
-  
-  const query = aql`
-  FOR u IN ${collection}
-    FILTER u.concept LIKE ${subject}
-    FOR v, e, p IN ANY u GRAPH ${graph}
-      FILTER e.STtype LIKE ${type}
-        RETURN p`;
-
+const query =   'FOR u IN ' + collectionName +
+                  ' FILTER u.concept LIKE "%' + subject + '%"' +
+                  ' FOR v, e, p IN ' + depth + ' ANY u GRAPH "' + graph + '"'+
+                    ' FILTER e.STtype LIKE ' + type +
+                      ' RETURN p';
   console.log(query);
 
   return new Promise((resolve, reject) => {
