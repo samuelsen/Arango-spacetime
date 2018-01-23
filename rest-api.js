@@ -1,7 +1,6 @@
 const arango = require('arangojs');
 const Database = arango.Database;
 const aql = arango.aql;
-const qb = require('aqb');
 
 // Using a complex connection string with authentication
 const host = 'localhost';//process.env.ARANGODB_HOST;
