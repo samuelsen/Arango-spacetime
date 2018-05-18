@@ -12,6 +12,11 @@ const app = express();
 
 app.use(cors());
 
+function error(res, code, message){
+  res.status(code);
+  res.send(message);
+}
+
 app.get('/', (req, res) => {
   res.send('{"menu" : "The possible association types that can be used for the association between concepts."}' + JSON.stringify(associations.menu));
 });
@@ -31,11 +36,17 @@ app.post('/make-graph', (req, res) => {
   }else{
     REST.makeGraph(req.body.collectionName)
     .then(res.send(req.body.collectionName))
-    .catch(e => {res.send(e)});
+    .catch(e => {error(res, 400, e)});
   }
 });
 
 require('./search.js')(app);
+
+app.post('/query', (req, res) => {
+  console.log(req.body.query);
+
+  req.body.query !== undefined ? REST.query(req.body.query).then(result => res.send(result)).catch(err => error(res, 400, err)) : error(res, 400, "missing query");
+})
 
 app.listen(serverPort, () => {
     console.log('Datagraft-RDF-to-Arago-DB started on http://localhost:' + serverPort + '/');

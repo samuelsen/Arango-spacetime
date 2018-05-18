@@ -95,7 +95,6 @@ function makeGraph (graphName){
 
 function search (collectionName, graph, subject, context, type, depth){
   
-
   if(depth !== undefined){
     depth = "0.." + depth;
   }else{
@@ -119,10 +118,24 @@ const query =   'FOR u IN ' + collectionName +
   });
 }
 
+function query (query){
+  return new Promise((resolve, reject) => {
+    db.query(query).then(
+      cursor => cursor.all()
+    ).then(
+      docs => resolve(docs),
+      err => reject('Query failed:\n' + JSON.stringify(err.response.body))
+    );
+  });
+}
+
+
+
 module.exports = {
   checkCollectionExists   : checkCollectionExists,
   insertDocument          : insertDocument,
   insertEdge              : insertEdge,
   makeGraph               : makeGraph,
   search                  : search,
+  query                   : query,
 }
