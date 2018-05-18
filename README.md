@@ -88,6 +88,4 @@ Where the input are as follows:
 - `insert.js` the file handling all inserts, mapping the insert data to the spacetime model, then inserting everything to the DB.
 - `rest.api.js` the file handling all communication between Arango and our application. Implementing the arangojs package for handling inserts, and querries to the DB.
 - `search.js` handling search inputs and checking values befor passing them to the `rest-api.js`for mapping the search params to an AQL query.
-- `server.js` the server file for the service, the entry point for our application.
-
-# TODO / in progress
+- `server.js` the server file for the service, the entry point for our application.		
