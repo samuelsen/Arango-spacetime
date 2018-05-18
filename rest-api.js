@@ -3,6 +3,8 @@ const Database = arango.Database;
 const aql = arango.aql;
 
 // Using a complex connection string with authentication
+// This is credentials for a local instance, 
+// any live connection setting should be put in a env file not available at gihub 
 const host = 'localhost';//process.env.ARANGODB_HOST;
 const port = '8529'; //process.env.ARANGODB_PORT;
 const database = '_system';//process.env.ARANGODB_DB;

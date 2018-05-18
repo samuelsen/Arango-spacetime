@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/h', (req, res) => {
-  res.send('{"insert" : insert information should be in this form "(type of association, from concept , to concept, context-note)"');
+  res.send('{"insert" : to insert information make a POST command to the route "/", the input format should be in this form "(type of association, from concept , to concept, context-note)"');
 });
 
 //handle inserts
